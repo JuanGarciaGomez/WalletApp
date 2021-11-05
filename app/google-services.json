@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "583983416226",
+    "project_id": "walletappjf",
+    "storage_bucket": "walletappjf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583983416226:android:90a95af6bdd39915d3a8fb",
+        "android_client_info": {
+          "package_name": "com.example.walletapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "583983416226-1s79nmrofkuqgc45t2bsdg0vjh58iqsg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0anNsHWSNto2DJWa-DrzaH1SeH1YUWZc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "583983416226-1s79nmrofkuqgc45t2bsdg0vjh58iqsg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
