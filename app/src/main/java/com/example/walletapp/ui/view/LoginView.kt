@@ -8,7 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.example.walletapp.databinding.ActivityLoginBinding
-import com.example.walletapp.ui.viewmodel.*
+import com.example.walletapp.ui.viewmodel.ERRORES
+import com.example.walletapp.ui.viewmodel.LoginViewModel
+import com.example.walletapp.ui.viewmodel.NAVIGATIONS
+import com.example.walletapp.ui.viewmodel.SUCCESS
 import java.util.concurrent.Executor
 
 class LoginView : AppCompatActivity() {
@@ -66,7 +69,7 @@ class LoginView : AppCompatActivity() {
 
     }
 
-    fun fingerLogin(){
+    fun fingerLogin() {
 
         executor = ContextCompat.getMainExecutor(this)
 
@@ -75,19 +78,28 @@ class LoginView : AppCompatActivity() {
 
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                     super.onAuthenticationError(errorCode, errString)
-                    Toast.makeText(applicationContext, "Authentication error: $errString", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        applicationContext,
+                        "Authentication error: $errString",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
                 override fun onAuthenticationSucceeded(
                     result: BiometricPrompt.AuthenticationResult
                 ) {
                     super.onAuthenticationSucceeded(result)
-                    Toast.makeText(applicationContext, "Authentication succeeded!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        applicationContext,
+                        "Authentication succeeded!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
                 override fun onAuthenticationFailed() {
                     super.onAuthenticationFailed()
-                    Toast.makeText(applicationContext, "Authentication failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Authentication failed", Toast.LENGTH_SHORT)
+                        .show()
                 }
             })
 

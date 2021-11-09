@@ -21,7 +21,8 @@ enum class ERRORES{
 
 enum class SUCCESS{
     LOGIN_SUCCESS,
-    FINGER_ACCESS
+    FINGER_ACCESS,
+    ADD_SUCCESS
 }
 
 enum class NAVIGATIONS{

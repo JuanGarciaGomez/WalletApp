@@ -1,19 +1,22 @@
-package com.example.walletapp
+package com.example.walletapp.ui.fragment
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.walletapp.ui.viewmodel.MainFragmentViewModel
+import com.example.walletapp.R
 
-class BlankFragment : Fragment() {
+class MainFragment : Fragment() {
 
     companion object {
-        fun newInstance() = BlankFragment()
+        fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: BlankViewModel
+    private lateinit var viewModel: MainFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,8 +27,9 @@ class BlankFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BlankViewModel::class.java)
+        viewModel = ViewModelProvider(this)[MainFragmentViewModel::class.java]
         // TODO: Use the ViewModel
+        Log.e("ACA","DENTRO DE MAINFragment")
     }
 
 }

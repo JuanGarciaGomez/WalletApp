@@ -20,7 +20,7 @@ class RegisterViewModel : BaseViewModel() {
             ) error.value = ERRORES.EMPTY_FIELDS
            else {
                 val model = RegisterModel(emailRegister, passwordRegister, passwordConfirmRegister)
-                model.auth({
+                model.register({
                     navigation.value = NAVIGATIONS.GO_MAIN_VIEW
                 }, {
                     error.value = ERRORES.WRONG_CREDENTIALS

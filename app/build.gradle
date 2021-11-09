@@ -62,5 +62,8 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:28.4.1')
     //Biometric Auth
     implementation 'androidx.biometric:biometric:1.1.0'
+    //Graphics
+    implementation 'com.github.lecho:hellocharts-android:v1.5.8'
+
 
 }

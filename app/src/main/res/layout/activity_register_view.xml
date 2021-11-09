@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="viewModelLogin"
+            name="viewModelRegister"
             type="com.example.walletapp.ui.viewmodel.RegisterViewModel" />
     </data>
 
@@ -57,7 +57,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
-                        android:text="@={viewModelLogin.email}" />
+                        android:text="@={viewModelRegister.email}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <View
@@ -92,7 +92,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:text="@={viewModelLogin.password}" />
+                        android:text="@={viewModelRegister.password}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <View
@@ -128,7 +128,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:text="@={viewModelLogin.passwordConfirm}" />
+                        android:text="@={viewModelRegister.passwordConfirm}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <View
@@ -159,7 +159,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:background="@drawable/degraded_button"
-                    android:onClick="@{()-> viewModelLogin.register()}"
+                    android:onClick="@{()-> viewModelRegister.register()}"
                     android:text="register" />
             </LinearLayout>
 
