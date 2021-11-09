@@ -1,6 +1,8 @@
 package com.example.walletapp.ui.view
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -8,9 +10,12 @@ import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.walletapp.R
 import com.example.walletapp.adapter.FragmentAdapter
+import com.example.walletapp.data.model.MainModel
 import com.example.walletapp.databinding.ActivityMainBinding
 import com.example.walletapp.ui.viewmodel.MainViewModel
+import com.example.walletapp.ui.viewmodel.NAVIGATIONS
 import com.example.walletapp.ui.viewmodel.SUCCESS
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
 
 class MainView : AppCompatActivity() {
@@ -32,6 +37,7 @@ class MainView : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModelMain = mainViewModel
 
+
         pager2 = findViewById(R.id.pager_container)
         tableLayout = findViewById(R.id.tab_layout)
         fragmentAdapter = FragmentAdapter(fm, lifecycle)
@@ -41,6 +47,15 @@ class MainView : AppCompatActivity() {
             when (it) {
                 SUCCESS.ADD_SUCCESS -> {
                     Toast.makeText(this, "ADD", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+        mainViewModel.navigation.observe(this, {
+            when (it) {
+                NAVIGATIONS.GO_LOGOUT_VIEW -> {
+                    val intent = Intent(context, LoginView::class.java)
+                    context.startActivity(intent)
+                    finish()
                 }
             }
         })
@@ -64,6 +79,19 @@ class MainView : AppCompatActivity() {
                 tableLayout.selectTab(tableLayout.getTabAt(position))
             }
         })
+    }
 
+    override fun onBackPressed() {
+        MaterialAlertDialogBuilder(context).setTitle("Logout")
+            .setMessage("¿Are you sure logout?")
+            .setNegativeButton("NO") { dialog, which ->
+                // Respond to negative button press
+                Log.e("NO", "no")
+            }
+            .setPositiveButton("YES") { dialog, which ->
+                val model = MainModel()
+                model.signOut { mainViewModel.navigation.value = NAVIGATIONS.GO_LOGOUT_VIEW }
+            }
+            .show()
     }
 }

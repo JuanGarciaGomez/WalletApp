@@ -2,6 +2,7 @@ package com.example.walletapp.data.network
 
 import com.example.walletapp.data.model.LoginModel
 import com.example.walletapp.data.model.RegisterModel
+import com.example.walletapp.ui.viewmodel.NAVIGATIONS
 import com.google.firebase.auth.FirebaseAuth
 
 class FireBaseController {
@@ -31,5 +32,10 @@ class FireBaseController {
 
     fun hasSession(): Boolean {
         return instance.currentUser != null
+    }
+
+    fun signOut(success: () -> Unit) {
+        instance.signOut()
+        success.invoke()
     }
 }

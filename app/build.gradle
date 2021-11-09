@@ -63,7 +63,6 @@ dependencies {
     //Biometric Auth
     implementation 'androidx.biometric:biometric:1.1.0'
     //Graphics
-    implementation 'com.github.lecho:hellocharts-android:v1.5.8'
-
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
 }

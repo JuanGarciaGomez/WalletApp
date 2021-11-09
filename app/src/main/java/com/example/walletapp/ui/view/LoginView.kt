@@ -12,6 +12,7 @@ import com.example.walletapp.ui.viewmodel.ERRORES
 import com.example.walletapp.ui.viewmodel.LoginViewModel
 import com.example.walletapp.ui.viewmodel.NAVIGATIONS
 import com.example.walletapp.ui.viewmodel.SUCCESS
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.concurrent.Executor
 
 class LoginView : AppCompatActivity() {
@@ -63,13 +64,14 @@ class LoginView : AppCompatActivity() {
                 NAVIGATIONS.GO_MAIN_VIEW -> {
                     val intent = Intent(context, MainView::class.java)
                     context.startActivity(intent)
+                    finish()
                 }
             }
         })
 
     }
 
-    fun fingerLogin() {
+    private fun fingerLogin() {
 
         executor = ContextCompat.getMainExecutor(this)
 

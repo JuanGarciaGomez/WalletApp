@@ -28,5 +28,6 @@ enum class SUCCESS{
 enum class NAVIGATIONS{
     GO_MAIN_VIEW,
     GO_REGISTER_VIEW,
-    GO_LOGIN_VIEW
+    GO_LOGIN_VIEW,
+    GO_LOGOUT_VIEW
 }
