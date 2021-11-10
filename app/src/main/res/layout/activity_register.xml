@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModelRegister"
             type="com.example.walletapp.ui.viewmodel.RegisterViewModel" />
@@ -15,7 +16,7 @@
         android:background="#34445E"
         android:orientation="vertical"
         android:padding="16dp"
-        tools:context=".ui.view.LoginView">
+        tools:context=".ui.view.RegisterView">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -152,6 +153,7 @@
                 android:layout_marginTop="50dp"
                 android:gravity="bottom"
                 android:orientation="horizontal">
+
                 <Button
                     android:id="@+id/register_btn"
                     android:layout_width="match_parent"

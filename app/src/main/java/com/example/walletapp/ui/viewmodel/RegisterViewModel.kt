@@ -22,6 +22,7 @@ class RegisterViewModel : BaseViewModel() {
                 val model = RegisterModel(emailRegister, passwordRegister, passwordConfirmRegister)
                 model.register({
                     navigation.value = NAVIGATIONS.GO_MAIN_VIEW
+                    success.value = SUCCESS.REGISTER_SUCCESS
                 }, {
                     error.value = ERRORES.WRONG_CREDENTIALS
                 })
