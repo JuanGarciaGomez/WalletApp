@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModelDialog"
+            type="com.example.walletapp.ui.viewmodel.AddViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="116dp"
+            android:layout_marginTop="44dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/wallet" />
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="60dp"
+            android:text="WalletApp"
+            android:textColor="@color/blue"
+            android:textSize="18dp"
+            app:layout_constraintStart_toEndOf="@+id/logo"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_add"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_margin="10dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_title"
+            app:shapeAppearance="@style/ShapeAppearance.App.MediumComponent2"
+            app:strokeColor="@color/blue"
+            app:strokeWidth="2dp">
+
+            <TextView
+                android:id="@+id/txt_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="Enter Expenses"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:gravity="center"
+                android:layout_gravity="bottom"
+                android:layout_margin="10dp"
+                android:padding="3dp">
+
+                <RelativeLayout
+                    android:id="@+id/name_relative"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/name_add_txt_input"
+                        style="@style/LoginTextInputLayoutStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="NAME"
+                        android:textColorHint="@color/white"
+                        app:startIconDrawable="@drawable/write"
+                        app:startIconTint="@color/white">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/name_add"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences"
+                            android:text="@={viewModelDialog.name}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="5dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/background" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="5dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/background" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/amout_relative"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp"
+                    android:layout_below="@id/name_relative">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/amount_add_txt_input"
+                        style="@style/LoginTextInputLayoutStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="AMOUNT"
+                        android:textColorHint="@color/white"
+                        app:startIconDrawable="@drawable/coin"
+                        app:startIconTint="@color/white">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/amount_add"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:text="@={viewModelDialog.amount}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="5dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/background" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="5dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/background" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/date_relative"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/amout_relative">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/input_date"
+                        style="@style/LoginTextInputLayoutStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="DATE"
+                        android:textColorHint="@color/white"
+                        app:startIconDrawable="@drawable/ic_calendar"
+                        app:startIconTint="@color/white">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/date_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="datetime"
+                            android:onClick="@{()-> viewModelDialog.datePicker()}"
+                            android:text="@={viewModelDialog.date}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="5dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/background" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="5dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/background" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_margin="5dp"
+                    android:layout_below="@+id/date_relative">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/input_spinner"
+                        style="@style/SpinnerTextInputLayoutStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="CATEGORY"
+                        android:textColorHint="@color/white"
+                        app:startIconDrawable="@drawable/menu"
+                        app:startIconTint="@color/white">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/spinner_edit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="datetime"
+                            android:text="@={viewModelDialog.category}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="5dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/background" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="5dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/background" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/description_relative"
+                    android:layout_width="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_height="70dp"
+                    android:layout_below="@id/spinner">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/passwordTxtInput2"
+                        style="@style/LoginTextInputLayoutStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="DESCRIPTION"
+                        android:textColorHint="@color/white"
+                        app:startIconDrawable="@drawable/receipt"
+                        app:startIconTint="@color/white">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/passwordEdt2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="textCapSentences"
+                            android:text="@={viewModelDialog.description}"
+                            android:textColor="@color/white" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="5dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/background" />
+
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="5dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/background" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/description_relative"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="16dp"
+                    android:gravity="end"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/accept_btn"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/degraded_button"
+                        android:onClick="@{()-> viewModelDialog.cancel()}"
+                        android:text="CANCEL"
+                        android:textColor="@color/blue" />
+
+                    <Button
+                        android:id="@+id/cancel_btn"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/degraded_button"
+                        android:onClick="@{()-> viewModelDialog.accept()}"
+                        android:text="ACCEPT"
+                        android:textColor="@color/blue" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

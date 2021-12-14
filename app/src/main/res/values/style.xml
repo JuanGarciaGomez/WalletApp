@@ -6,10 +6,16 @@
 
     </style>
 
+    <style name="SpinnerTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+        <item name="boxBackgroundColor">@color/background</item>
+
+    </style>
+
     <style name="Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/blue</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="android:textColorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/background</item>
 
         <item name="colorSurface">@color/background</item>
 
@@ -18,7 +24,8 @@
         <item name="textAppearanceSubtitle1">@style/TextAppearance.App.Subtitle1</item>
         <item name="textAppearanceCaption">@style/TextAppearance.App.Caption</item>
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent
+        </item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
     </style>
 
@@ -37,14 +44,24 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="ShapeAppearance.App.SmallComponentDatePicker" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10%</item>
+    </style>
+
     <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">25%</item>
     </style>
 
+    <style name="ShapeAppearance.App.MediumComponentDatePicker" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">1%</item>
+    </style>
+
     <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="colorPrimary">@color/blue</item>
-       <item name="colorSurface">@color/background</item>
+        <item name="colorSurface">@color/background</item>
         <item name="colorOnSurface">@color/white</item>
         <item name="alertDialogStyle">@style/MaterialAlertDialog.App</item>
         <!--<item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text</item>
@@ -57,8 +74,19 @@
     </style>
 
     <style name="ShapeAppearance.App.MediumComponent2" parent="ShapeAppearance.MaterialComponents.MediumComponent">
-        <item name="cornerFamily">cut</item>
-        <item name="cornerSize">0dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="MaterialCalendarTheme" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="shapeAppearanceSmallComponent">
+            @style/ShapeAppearance.App.SmallComponentDatePicker
+        </item>
+        <item name="shapeAppearanceMediumComponent">
+            @style/ShapeAppearance.App.MediumComponentDatePicker
+        </item>
     </style>
 
 </resources>

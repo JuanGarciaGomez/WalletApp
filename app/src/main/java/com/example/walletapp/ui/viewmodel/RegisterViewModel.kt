@@ -17,14 +17,14 @@ class RegisterViewModel : BaseViewModel() {
             if (emailRegister.isEmpty()
                 || passwordRegister.isEmpty()
                 || passwordConfirmRegister.isEmpty()
-            ) error.value = ERRORES.EMPTY_FIELDS
+            ) error.value = ERROR.EMPTY_FIELDS
            else {
                 val model = RegisterModel(emailRegister, passwordRegister, passwordConfirmRegister)
                 model.register({
-                    navigation.value = NAVIGATIONS.GO_MAIN_VIEW
+                    navigation.value = NAVIGATION.GO_MAIN_VIEW
                     success.value = SUCCESS.REGISTER_SUCCESS
                 }, {
-                    error.value = ERRORES.WRONG_CREDENTIALS
+                    error.value = ERROR.WRONG_CREDENTIALS
                 })
             }
         } catch (e: Exception) {

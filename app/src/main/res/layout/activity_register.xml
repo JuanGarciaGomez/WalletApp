@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#34445E"
+        android:background="@color/background"
         android:orientation="vertical"
         android:padding="16dp"
         tools:context=".ui.view.RegisterView">
@@ -51,7 +51,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Mail"
-                    app:startIconDrawable="@drawable/ic_mail">
+                    android:textColorHint="@color/white"
+                    app:startIconDrawable="@drawable/ic_mail"
+                    app:startIconTint="@color/white">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/correoEdt"
@@ -86,7 +88,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
-                    app:startIconDrawable="@drawable/ic_lock">
+                    android:textColorHint="@color/white"
+                    app:startIconDrawable="@drawable/ic_lock"
+                    app:startIconTint="@color/white">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/passwordEdt"
@@ -122,7 +126,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Confirm Password"
-                    app:startIconDrawable="@drawable/ic_lock">
+                    android:textColorHint="@color/white"
+                    app:startIconDrawable="@drawable/ic_lock"
+                    app:startIconTint="@color/white">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/confirm_password_edt"

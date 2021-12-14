@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#34445E"
+        android:background="@color/background"
         android:orientation="vertical"
         android:padding="16dp"
         tools:context=".ui.view.LoginView">
@@ -54,10 +54,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Mail"
+                    android:textColorHint="@color/white"
+                    app:startIconTint="@color/white"
                     app:startIconDrawable="@drawable/ic_mail">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/correoEdt"
+                        android:textColor="@color/white"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
@@ -89,6 +92,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
+                    app:startIconTint="@color/white"
+                    android:textColorHint="@color/white"
                     app:startIconDrawable="@drawable/ic_lock">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -164,6 +169,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
+                        android:textColor="@color/blue"
                         android:onClick="@{()-> viewModelLogin.register()}"
                         android:text="Register"
                         android:textSize="10sp" />

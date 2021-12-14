@@ -1,18 +1,17 @@
 package com.example.walletapp.ui.view
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import com.example.walletapp.data.extension_functions.intentTo
+import com.example.walletapp.data.extension_functions.toast
 import com.example.walletapp.databinding.ActivityLoginBinding
-import com.example.walletapp.ui.viewmodel.ERRORES
+import com.example.walletapp.ui.viewmodel.ERROR
 import com.example.walletapp.ui.viewmodel.LoginViewModel
-import com.example.walletapp.ui.viewmodel.NAVIGATIONS
+import com.example.walletapp.ui.viewmodel.NAVIGATION
 import com.example.walletapp.ui.viewmodel.SUCCESS
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.concurrent.Executor
 
 class LoginView : AppCompatActivity() {
@@ -37,7 +36,7 @@ class LoginView : AppCompatActivity() {
         loginViewModel.success.observe(this, {
             when (it) {
                 SUCCESS.LOGIN_SUCCESS -> {
-                    Toast.makeText(this, "Login correcto", Toast.LENGTH_SHORT).show()
+                    toast("Login correcto")
                 }
                 SUCCESS.FINGER_ACCESS -> {
                     fingerLogin()
@@ -47,23 +46,21 @@ class LoginView : AppCompatActivity() {
         })
         loginViewModel.error.observe(this, {
             when (it) {
-                ERRORES.EMPTY_FIELDS -> {
-                    Toast.makeText(this, "Campos vacios", Toast.LENGTH_SHORT).show()
+                ERROR.EMPTY_FIELDS -> {
+                    toast("Campos vacios")
                 }
-                ERRORES.WRONG_CREDENTIALS -> {
-                    Toast.makeText(this, "Error de credenciales", Toast.LENGTH_SHORT).show()
+                ERROR.WRONG_CREDENTIALS -> {
+                    toast("Error de credenciales")
                 }
             }
         })
         loginViewModel.navigation.observe(this, {
             when (it) {
-                NAVIGATIONS.GO_REGISTER_VIEW -> {
-                    val intent = Intent(context, RegisterView::class.java)
-                    context.startActivity(intent)
+                NAVIGATION.GO_REGISTER_VIEW -> {
+                    intentTo(RegisterView::class.java)
                 }
-                NAVIGATIONS.GO_MAIN_VIEW -> {
-                    val intent = Intent(context, MainView::class.java)
-                    context.startActivity(intent)
+                NAVIGATION.GO_MAIN_VIEW -> {
+                    intentTo(MainView::class.java)
                     finish()
                 }
             }
@@ -80,28 +77,19 @@ class LoginView : AppCompatActivity() {
 
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                     super.onAuthenticationError(errorCode, errString)
-                    Toast.makeText(
-                        applicationContext,
-                        "Authentication error: $errString",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    toast("Autjemtocaton error: $errString")
                 }
 
                 override fun onAuthenticationSucceeded(
-                    result: BiometricPrompt.AuthenticationResult
+                    result: BiometricPrompt.AuthenticationResult,
                 ) {
                     super.onAuthenticationSucceeded(result)
-                    Toast.makeText(
-                        applicationContext,
-                        "Authentication succeeded!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    toast("Authentication suceeded!")
                 }
 
                 override fun onAuthenticationFailed() {
                     super.onAuthenticationFailed()
-                    Toast.makeText(applicationContext, "Authentication failed", Toast.LENGTH_SHORT)
-                        .show()
+                    toast("Authentication failed!")
                 }
             })
 

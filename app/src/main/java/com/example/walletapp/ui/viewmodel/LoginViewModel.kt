@@ -2,7 +2,6 @@ package com.example.walletapp.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.example.walletapp.data.model.LoginModel
-import com.example.walletapp.data.prefs.FingerLoginOption.Companion.prefs
 
 class LoginViewModel : BaseViewModel() {
 
@@ -12,7 +11,7 @@ class LoginViewModel : BaseViewModel() {
 
     init {
         if (firebaseController.hasSession()) {
-            navigation.value = NAVIGATIONS.GO_MAIN_VIEW
+            navigation.value = NAVIGATION.GO_MAIN_VIEW
         }
     }
 
@@ -23,15 +22,15 @@ class LoginViewModel : BaseViewModel() {
 
             if (emailLogin.isEmpty()
                 || passwordLogin.isEmpty()
-            ) error.value = ERRORES.EMPTY_FIELDS
+            ) error.value = ERROR.EMPTY_FIELDS
             else {
                 val model = LoginModel(emailLogin, passwordLogin)
                 model.auth({
-                    navigation.value = NAVIGATIONS.GO_MAIN_VIEW
+                    navigation.value = NAVIGATION.GO_MAIN_VIEW
                     success.value = SUCCESS.LOGIN_SUCCESS
-                 //   prefs.saveFingerLogin(true)
+                    //   prefs.saveFingerLogin(true)
                 }, {
-                    error.value = ERRORES.WRONG_CREDENTIALS
+                    error.value = ERROR.WRONG_CREDENTIALS
                 })
             }
         } catch (e: Exception) {
@@ -40,11 +39,11 @@ class LoginViewModel : BaseViewModel() {
     }
 
     fun register() {
-        navigation.value = NAVIGATIONS.GO_REGISTER_VIEW
+        navigation.value = NAVIGATION.GO_REGISTER_VIEW
     }
 
     fun fingerAuth() {
-        success.value= SUCCESS.FINGER_ACCESS
+        success.value = SUCCESS.FINGER_ACCESS
     }
 
 }
