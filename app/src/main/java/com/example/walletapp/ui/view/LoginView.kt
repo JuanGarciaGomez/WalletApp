@@ -7,11 +7,17 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.example.walletapp.data.extension_functions.intentTo
 import com.example.walletapp.data.extension_functions.toast
+import com.example.walletapp.data.model.LoginModel
+import com.example.walletapp.data.prefs.FingerLoginOption.Companion.prefs
 import com.example.walletapp.databinding.ActivityLoginBinding
 import com.example.walletapp.ui.viewmodel.ERROR
 import com.example.walletapp.ui.viewmodel.LoginViewModel
 import com.example.walletapp.ui.viewmodel.NAVIGATION
 import com.example.walletapp.ui.viewmodel.SUCCESS
+import com.example.walletapp.utils.Utils.Companion.decryptPass
+import com.example.walletapp.utils.Utils.Companion.decryptUser
+import com.example.walletapp.utils.Utils.Companion.passKey
+import com.example.walletapp.utils.Utils.Companion.userKey
 import java.util.concurrent.Executor
 
 class LoginView : AppCompatActivity() {
@@ -40,7 +46,6 @@ class LoginView : AppCompatActivity() {
                 }
                 SUCCESS.FINGER_ACCESS -> {
                     fingerLogin()
-                    biometricPrompt.authenticate(promptInfo)
                 }
             }
         })
@@ -77,7 +82,7 @@ class LoginView : AppCompatActivity() {
 
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
                     super.onAuthenticationError(errorCode, errString)
-                    toast("Autjemtocaton error: $errString")
+                    toast("Authentication error: $errString")
                 }
 
                 override fun onAuthenticationSucceeded(
@@ -85,6 +90,18 @@ class LoginView : AppCompatActivity() {
                 ) {
                     super.onAuthenticationSucceeded(result)
                     toast("Authentication suceeded!")
+
+                    val model = LoginModel(decryptUser(prefs.getUsersLogin(), userKey),
+                        decryptPass(prefs.getKeyLogin(),
+                            passKey))
+                    model.auth({
+                        loginViewModel.navigation.value = NAVIGATION.GO_MAIN_VIEW
+                        loginViewModel.success.value = SUCCESS.LOGIN_SUCCESS
+                        //   prefs.saveFingerLogin(true)
+                    }, {
+                        loginViewModel.error.value = ERROR.WRONG_CREDENTIALS
+                    })
+
                 }
 
                 override fun onAuthenticationFailed() {
@@ -99,6 +116,8 @@ class LoginView : AppCompatActivity() {
             .setSubtitle("Log in using your biometric credential")
             .setNegativeButtonText("Use account password")
             .build()
+
+        biometricPrompt.authenticate(promptInfo)
     }
 
 }

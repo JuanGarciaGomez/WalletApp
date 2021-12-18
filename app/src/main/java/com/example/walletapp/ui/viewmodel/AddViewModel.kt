@@ -2,6 +2,7 @@ package com.example.walletapp.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import com.example.walletapp.data.model.ExpensesModel
+import com.example.walletapp.utils.Utils.Companion.dataUItoDB
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -35,7 +36,7 @@ class AddViewModel : BaseViewModel() {
                         nameAdd,
                         descriptionAdd,
                         amountAdd.toDouble(),
-                        dateAdd,
+                        dataUItoDB(dateAdd),
                         category
                     )
                 expenses.addExpenses({

@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.walletapp.ui.fragment.MainFragment
+import com.example.walletapp.ui.fragment.MainFragment.Companion.newInstance
 
 class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
@@ -13,7 +14,7 @@ class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
 
         return when (position) {
             0 -> {
-                MainFragment()
+                newInstance()
             }
             1 -> {
                 MainFragment()

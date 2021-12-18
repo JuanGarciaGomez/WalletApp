@@ -1,11 +1,13 @@
 package com.example.walletapp.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.walletapp.R
@@ -39,9 +41,10 @@ class ExpensesAdapter(
         var name = view.findViewById<TextView>(R.id.txt_name_expenses)!!
         var date = view.findViewById<TextView>(R.id.txt_date_expenses)!!
         private var amount = view.findViewById<TextView>(R.id.txt_amount_expenses)!!
-
+        private var space = view.findViewById<View>(R.id.space)!!
 
         fun expenseAllocation(expenses: Expenses, position: Int) {
+            if(position == expensesList.size-1) space.visibility = View.VISIBLE
 
             val localFile: File = File.createTempFile("images", "png")
 
@@ -50,14 +53,24 @@ class ExpensesAdapter(
             name.text = expenses.name
             date.text = expenses.date
             amount.text = "$ $amountFormat"
+
+
             val category = expenses.category
 
             selectImage(category).getFile(localFile).addOnSuccessListener {
-                Glide.with(context).load(localFile).into(image)
+                Glide.with(context)
+                    .load(localFile)
+                    .centerCrop()
+                    // .placeholder(R.drawable.wallet)
+                    // .error(R.drawable.exit)
+                    .into(image);
+
             }
 
+            view.setOnClickListener{
+                Toast.makeText(context,"Click",Toast.LENGTH_SHORT).show()
+            }
         }
-
     }
 
     private fun selectImage(category: String): StorageReference {

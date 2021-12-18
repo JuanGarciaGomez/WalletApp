@@ -30,7 +30,7 @@ class RegisterView : AppCompatActivity() {
         registerViewModel.success.observe(this, {
             when (it) {
                 SUCCESS.REGISTER_SUCCESS -> {
-                    toast("Registro correcto")
+                    toast("Correct Registration")
                 }
             }
         })
@@ -47,7 +47,10 @@ class RegisterView : AppCompatActivity() {
         registerViewModel.error.observe(this, {
             when (it) {
                 ERROR.EMPTY_FIELDS -> {
-                    toast("Campos vacios")
+                    toast("Empty fields")
+                }
+                ERROR.ERROR_PASSWORD -> {
+                    toast("Passwords must match")
                 }
             }
 

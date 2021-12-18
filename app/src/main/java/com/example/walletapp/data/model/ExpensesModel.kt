@@ -8,7 +8,7 @@ data class ExpensesModel(
     val description: String,
     val amount: Double,
     val date: String,
-    val category: String
+    val category: String,
 ) {
     private val firebaseController = FireBaseController()
 

@@ -1,7 +1,6 @@
 package com.example.walletapp.ui.fragment
 
 import android.app.Dialog
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,7 +9,6 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
@@ -23,6 +21,7 @@ import com.example.walletapp.ui.viewmodel.AddViewModel
 import com.example.walletapp.ui.viewmodel.ERROR
 import com.example.walletapp.ui.viewmodel.NAVIGATION
 import com.example.walletapp.ui.viewmodel.SUCCESS
+import com.example.walletapp.utils.Utils.Companion.onBack
 import com.google.android.material.datepicker.MaterialDatePicker
 
 class AddFragment : DialogFragment() {
@@ -30,7 +29,6 @@ class AddFragment : DialogFragment() {
     private lateinit var dialogViewModel: AddViewModel
 
     private lateinit var binding: FragmentAddBinding
-
 
     private val context = this
 
@@ -43,7 +41,7 @@ class AddFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
 
         dialogViewModel = ViewModelProvider(this)[AddViewModel::class.java]
@@ -57,6 +55,7 @@ class AddFragment : DialogFragment() {
             when (it) {
                 SUCCESS.CLOSE_SUCCESS -> {
                     intentTo(MainView::class.java)
+                    onBack = 0
                 }
                 SUCCESS.ADD_SUCCESS -> {
                     toast("Expenses Add :)")
@@ -90,8 +89,8 @@ class AddFragment : DialogFragment() {
 
     }
 
-    private fun categoryPicker(){
-        val items = listOf("Health", "Liqueur", "Gym", "Restaurant","Shopping","Market")
+    private fun categoryPicker() {
+        val items = listOf("Health", "Liqueur", "Gym", "Restaurant", "Shopping", "Market")
         val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
         (binding.spinnerEdit as? AutoCompleteTextView)?.setAdapter(adapter)
 

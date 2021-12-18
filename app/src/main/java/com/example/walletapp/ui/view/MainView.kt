@@ -2,19 +2,18 @@ package com.example.walletapp.ui.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager2.widget.ViewPager2
-import com.example.walletapp.R
 import com.example.walletapp.adapter.FragmentAdapter
+import com.example.walletapp.data.extension_functions.toast
 import com.example.walletapp.data.model.MainModel
+import com.example.walletapp.data.prefs.FingerLoginOption.Companion.prefs
 import com.example.walletapp.databinding.ActivityMainBinding
-import com.example.walletapp.ui.fragment.AddFragment
 import com.example.walletapp.ui.viewmodel.MainViewModel
 import com.example.walletapp.ui.viewmodel.NAVIGATION
+import com.example.walletapp.utils.Utils.Companion.onBack
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
 
@@ -26,11 +25,13 @@ class MainView : AppCompatActivity() {
       private val dataBase = Firebase.database
       private val myRef = dataBase.getReference("user")*/
 
+    // 1 Permiso concedido
+    // 2 Permiso denegado
+    // 0 Desactivado
+
     private val mainViewModel: MainViewModel by viewModels()
 
     private lateinit var fragmentAdapter: FragmentAdapter
-    private lateinit var tableLayout: TabLayout
-    private lateinit var pager2: ViewPager2
     private val fm: FragmentManager = supportFragmentManager
     private val context = this
 
@@ -41,11 +42,10 @@ class MainView : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModelMain = mainViewModel
 
+        if (prefs.getFingerLogin() == 0) questionFingerPrint()
 
-        pager2 = findViewById(R.id.pager_container)
-        tableLayout = findViewById(R.id.tab_layout)
         fragmentAdapter = FragmentAdapter(fm, lifecycle)
-        pager2.adapter = fragmentAdapter
+        binding.pagerContainer.adapter = fragmentAdapter
 
         mainViewModel.navigation.observe(this, {
             when (it) {
@@ -54,15 +54,12 @@ class MainView : AppCompatActivity() {
                     context.startActivity(intent)
                     finish()
                 }
-                NAVIGATION.GO_ADD_TAP_SUCCESS -> {
-                    showDialog()
-                }
             }
         })
 
-        tableLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                pager2.currentItem = tab.position
+                binding.pagerContainer.currentItem = tab.position
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -74,45 +71,23 @@ class MainView : AppCompatActivity() {
             }
         })
 
-        pager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.pagerContainer.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
-                tableLayout.selectTab(tableLayout.getTabAt(position))
+                binding.tabLayout.selectTab(binding.tabLayout.getTabAt(position))
             }
         })
     }
 
-    private fun showDialog() {
-        val isLargeLayout = resources.getBoolean(R.bool.large_layout)
-        val fragmentManager = supportFragmentManager
-        val newFragment = AddFragment()
-        if (isLargeLayout) {
-            // The device is using a large layout, so show the fragment as a dialog
-            newFragment.show(fragmentManager, "dialog")
-        } else {
-            // The device is smaller, so show the fragment fullscreen
-            val transaction = fragmentManager.beginTransaction()
-            // For a little polish, specify a transition animation
-            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-            // To make it fullscreen, use the 'content' root view as the container
-            // for the fragment, which is always the root view for the activity
-            transaction
-                .add(android.R.id.content, newFragment)
-                .addToBackStack(null)
-                .commit()
-        }
-    }
-
     override fun onBackPressed() {
-        Log.e("onBack", mainViewModel.navigation.value.toString())
-        if (mainViewModel.navigation.value == NAVIGATION.GO_ADD_TAP_SUCCESS) {
+        if (onBack == 1) {
             mainViewModel.navigation.value = NAVIGATION.GO_MAIN_VIEW
+            onBack = 0
             super.onBackPressed()
         } else {
             MaterialAlertDialogBuilder(context).setTitle("Logout")
                 .setMessage("¿Are you sure logout?")
                 .setNegativeButton("NO") { dialog, which ->
-                    // Respond to negative button press
-                    Log.e("NO", "no")
+
                 }
                 .setPositiveButton("YES") { dialog, which ->
                     val model = MainModel()
@@ -121,6 +96,22 @@ class MainView : AppCompatActivity() {
                 .show()
         }
     }
+
+    private fun questionFingerPrint(){
+        MaterialAlertDialogBuilder(context).setTitle("Fingerprint")
+            .setMessage("¿Activate fingerprint login?")
+            .setNegativeButton("NO") { dialog, which ->
+                // Respond to negative button press
+              toast("Permission denied, maybe next time")
+                prefs.saveFingerLogin(2)
+            }
+            .setPositiveButton("YES") { dialog, which ->
+                prefs.saveFingerLogin(1)
+               toast("Permission granted")
+            }
+            .show()
+    }
+
 
     /*   //Abrir camara
        fun fileManager() {

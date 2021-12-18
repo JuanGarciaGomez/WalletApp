@@ -5,8 +5,12 @@ import com.example.walletapp.data.model.ExpensesModel
 import com.example.walletapp.data.model.LoginModel
 import com.example.walletapp.data.model.RegisterModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class FireBaseController {
 
@@ -17,22 +21,27 @@ class FireBaseController {
 
 
     fun auth(model: LoginModel, success: () -> Unit, error: (String) -> Unit) {
-        instance.signInWithEmailAndPassword(model.email, model.password).addOnCompleteListener {
-            if (it.isSuccessful) {
-                success.invoke()
-            } else {
-                error.invoke("xD")
+        CoroutineScope(Dispatchers.IO).launch {
+            instance.signInWithEmailAndPassword(model.email, model.password).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    success.invoke()
+                } else {
+                    error.invoke("xD")
+                }
             }
         }
     }
 
     fun register(model: RegisterModel, success: () -> Unit, error: (String) -> Unit) {
-        instance.createUserWithEmailAndPassword(model.email, model.password).addOnCompleteListener {
-            if (it.isSuccessful) {
-                success.invoke()
-            } else {
-                error.invoke("xD")
-            }
+        CoroutineScope(Dispatchers.IO).launch {
+            instance.createUserWithEmailAndPassword(model.email, model.password)
+                .addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        success.invoke()
+                    } else {
+                        error.invoke("xD")
+                    }
+                }
         }
     }
 
@@ -46,19 +55,21 @@ class FireBaseController {
     }
 
     fun addExpenses(expensesModel: ExpensesModel, success: () -> Unit, error: () -> Unit) {
-        val expenses = Expenses(
-            mail = expensesModel.mail,
-            name = expensesModel.name,
-            description = expensesModel.description,
-            amount = expensesModel.amount,
-            date = expensesModel.date,
-            category = expensesModel.category
-        )
-        collection.add(expenses).addOnSuccessListener {
-            success.invoke()
-        }.addOnFailureListener { e ->
-            e.printStackTrace()
-            error.invoke()
+        CoroutineScope(Dispatchers.IO).launch {
+            val expenses = Expenses(
+                mail = expensesModel.mail,
+                name = expensesModel.name,
+                description = expensesModel.description,
+                amount = expensesModel.amount,
+                date = expensesModel.date,
+                category = expensesModel.category
+            )
+            collection.add(expenses).addOnSuccessListener {
+                success.invoke()
+            }.addOnFailureListener { e ->
+                e.printStackTrace()
+                error.invoke()
+            }
         }
     }
 
