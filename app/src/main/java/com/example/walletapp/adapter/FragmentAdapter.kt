@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.walletapp.ui.fragment.MainFragment
-import com.example.walletapp.ui.fragment.MainFragment.Companion.newInstance
+import com.example.walletapp.ui.view.fragment.MainFragment
+import com.example.walletapp.ui.view.fragment.MainFragment.Companion.newInstance
 
 class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {

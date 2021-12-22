@@ -5,7 +5,6 @@ import com.example.walletapp.data.model.ExpensesModel
 import com.example.walletapp.data.model.LoginModel
 import com.example.walletapp.data.model.RegisterModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
@@ -54,6 +53,9 @@ class FireBaseController {
         success.invoke()
     }
 
+    /**
+     * add expenses in fireStore
+     */
     fun addExpenses(expensesModel: ExpensesModel, success: () -> Unit, error: () -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             val expenses = Expenses(

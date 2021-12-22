@@ -4,8 +4,8 @@ import android.app.Application
 
 class FingerLoginOption : Application() {
 
-    companion object{
-        lateinit var prefs:Prefs
+    companion object {
+        lateinit var prefs: Prefs
     }
 
     override fun onCreate() {

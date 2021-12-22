@@ -73,6 +73,10 @@ class ExpensesAdapter(
         }
     }
 
+    /**
+     * According the category
+     * bring an image of fireBase
+     */
     private fun selectImage(category: String): StorageReference {
         val mStorageRef: StorageReference?
         var child = "images/"
@@ -101,5 +105,4 @@ class ExpensesAdapter(
         return mStorageRef.child(child)
 
     }
-
 }

@@ -13,6 +13,10 @@ import com.example.walletapp.ui.viewmodel.SUCCESS
 
 class RegisterView : AppCompatActivity() {
 
+    /**
+     * This class is responsible for show register form
+     */
+
     private lateinit var binding: ActivityRegisterBinding
 
     private val registerViewModel: RegisterViewModel by viewModels()

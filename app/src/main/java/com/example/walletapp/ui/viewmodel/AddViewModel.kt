@@ -8,6 +8,12 @@ import com.google.firebase.ktx.Firebase
 
 class AddViewModel : BaseViewModel() {
 
+    /**
+     * This class is responsible for connect view with model
+     * also this class can do validations
+     * Connect AddFragment.kt with fragment_add.xml
+     */
+
     val name: MutableLiveData<String> = MutableLiveData("")
     val amount: MutableLiveData<String> = MutableLiveData("")
     val date: MutableLiveData<String> = MutableLiveData("")

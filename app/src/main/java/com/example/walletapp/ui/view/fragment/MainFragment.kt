@@ -1,4 +1,4 @@
-package com.example.walletapp.ui.fragment
+package com.example.walletapp.ui.view.fragment
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -27,8 +27,15 @@ import com.github.mikephil.charting.data.BarEntry
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
+    /**
+     * This fragment is responsible about show  different recyclerView
+     * according to the need
+     */
 
     private var i = 0
     private lateinit var mainFragmentViewModel: MainFragmentViewModel
@@ -67,15 +74,6 @@ class MainFragment : Fragment() {
         mainFragmentViewModel = ViewModelProvider(this)[MainFragmentViewModel::class.java]
         // TODO: Use the ViewModel
         //setBarChartValues()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        while (i < 1) {
-            initRecycler()
-            //setBarChartValues()
-            i++
-        }
     }
 
     fun setBarChartValues() {
@@ -134,45 +132,60 @@ class MainFragment : Fragment() {
         val db = Firebase.firestore
         val email = Firebase.auth.currentUser?.email
         var totalAmount = 0.0;
-        db.collection("expenses")
-            .whereEqualTo("mail", email)
-            .get()
-            .addOnSuccessListener { expensesDocuments ->
-                val expenses = mutableListOf<Expenses>()
+        CoroutineScope(Dispatchers.IO).launch {
+            db.collection("expenses")
+                .whereEqualTo("mail", email)
+                .get()
+                .addOnSuccessListener { expensesDocuments ->
+                    val expenses = mutableListOf<Expenses>()
 
-                for (expenseDocument in expensesDocuments) {
+                    for (expenseDocument in expensesDocuments) {
 
-                    if (expensesDocuments.count() == 0) {
-                        binding.progressCircular.visibility = View.GONE
+                        if (expensesDocuments.count() == 0) {
+                            binding.progressCircular.visibility = View.GONE
+                        } else binding.imageEmpty.visibility = View.GONE
+
+                        val name = expenseDocument.data["name"].toString()
+                        val amount = expenseDocument.data["amount"].toString()
+                        val date = Utils.dataDBtoUI(expenseDocument.data["date"].toString())
+                        val category = expenseDocument.data["category"].toString()
+                        val expense =
+                            Expenses(expenseDocument.id,
+                                name,
+                                "",
+                                amount.toDouble(),
+                                date,
+                                category)
+                        totalAmount += amount.toDouble()
+
+                        expenses.add(expense)
                     }
 
-                    val name = expenseDocument.data["name"].toString()
-                    val amount = expenseDocument.data["amount"].toString()
-                    val date = Utils.dataDBtoUI(expenseDocument.data["date"].toString())
-                    val category = expenseDocument.data["category"].toString()
-                    val expense =
-                        Expenses(expenseDocument.id, name, "", amount.toDouble(), date, category)
-                    totalAmount += amount.toDouble()
+                    expenses.sortByDescending {
+                        it.date
+                    }
+                    activity?.runOnUiThread {
+                        if (expenses.isEmpty())  binding.imageEmpty.visibility = View.VISIBLE
+                        val adapter = context?.let { ExpensesAdapter(it, expenses) }
 
-                    expenses.add(expense)
+                        binding.listaGastos.layoutManager = LinearLayoutManager(requireContext())
+                        binding.listaGastos.adapter = adapter
+                        binding.txtAmount.text =
+                            "$ ${
+                                totalAmount.toString()
+                                    .substring(0, totalAmount.toString().length - 2)
+                            },00"
+
+                        binding.progressCircular.visibility = View.GONE
+
+                    }
+                }.addOnFailureListener {
+                    it.printStackTrace()
+                    Log.e(null, "ERROR LEER DATOS")
                 }
+        }
 
-                expenses.sortByDescending {
-                    it.date
-                }
 
-                val adapter = context?.let { ExpensesAdapter(it, expenses) }
-
-                binding.listaGastos.layoutManager = LinearLayoutManager(requireContext())
-                binding.listaGastos.adapter = adapter
-                binding.txtAmount.text =
-                    "$ ${totalAmount.toString().substring(0, totalAmount.toString().length - 2)},00"
-
-                binding.progressCircular.visibility = View.GONE
-            }.addOnFailureListener {
-                it.printStackTrace()
-                Log.e(null, "ERROR LEER DATOS")
-            }
     }
 
     private fun showDialog() {

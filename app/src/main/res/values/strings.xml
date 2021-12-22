@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">WalletApp</string>
+    <string name="accept">ACCEPT</string>
+    <string name="cancel">CANCEL</string>
+    <string name="description">DESCRIPTION</string>
+    <string name="category">CATEGORY</string>
+    <string name="date">DATE</string>
+    <string name="amount">AMOUNT</string>
+    <string name="name">NAME</string>
+    <string name="walletapp">WalletApp</string>
+    <string name="mail">Mail</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>

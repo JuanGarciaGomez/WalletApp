@@ -1,6 +1,5 @@
 package com.example.walletapp.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.walletapp.data.model.LoginModel
 import com.example.walletapp.data.prefs.FingerLoginOption.Companion.prefs
@@ -12,7 +11,9 @@ class LoginViewModel : BaseViewModel() {
     val email: MutableLiveData<String> = MutableLiveData("")
     val password: MutableLiveData<String> = MutableLiveData("")
 
-
+    /**
+     * All into of init starts when the class is called
+     */
     init {
         email.value = decryptUser(prefs.getUsersLogin(), userKey)
         if (firebaseController.hasSession()) {
@@ -48,9 +49,5 @@ class LoginViewModel : BaseViewModel() {
     fun register() {
         navigation.value = NAVIGATION.GO_REGISTER_VIEW
     }
-
-    /*fun fingerAuth() {
-        success.value = SUCCESS.FINGER_ACCESS
-    }*/
 
 }

@@ -22,6 +22,11 @@ import java.util.concurrent.Executor
 
 class LoginView : AppCompatActivity() {
 
+    /**
+     * This class is responsible to show the login
+     * and use fingerLogin
+     */
+
     private lateinit var binding: ActivityLoginBinding
 
     private val loginViewModel: LoginViewModel by viewModels()

@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="60dp"
-            android:text="WalletApp"
+            android:text="@string/walletapp"
             android:textColor="@color/blue"
             android:textSize="18dp"
             app:layout_constraintStart_toEndOf="@+id/logo"
@@ -66,9 +66,9 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-               android:gravity="center"
                 android:layout_gravity="bottom"
                 android:layout_margin="10dp"
+                android:gravity="center"
                 android:padding="3dp">
 
                 <RelativeLayout
@@ -82,7 +82,7 @@
                         style="@style/LoginTextInputLayoutStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="NAME"
+                        android:hint="@string/name"
                         android:textColorHint="@color/white"
                         app:startIconDrawable="@drawable/write"
                         app:startIconTint="@color/white">
@@ -114,15 +114,15 @@
                     android:id="@+id/amout_relative"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
-                    android:layout_margin="5dp"
-                    android:layout_below="@id/name_relative">
+                    android:layout_below="@id/name_relative"
+                    android:layout_margin="5dp">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/amount_add_txt_input"
                         style="@style/LoginTextInputLayoutStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="AMOUNT"
+                        android:hint="@string/amount"
                         android:textColorHint="@color/white"
                         app:startIconDrawable="@drawable/coin"
                         app:startIconTint="@color/white">
@@ -154,15 +154,15 @@
                     android:id="@+id/date_relative"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
-                    android:layout_margin="5dp"
-                    android:layout_below="@+id/amout_relative">
+                    android:layout_below="@+id/amout_relative"
+                    android:layout_margin="5dp">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/input_date"
                         style="@style/LoginTextInputLayoutStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="DATE"
+                        android:hint="@string/date"
                         android:textColorHint="@color/white"
                         app:startIconDrawable="@drawable/ic_calendar"
                         app:startIconTint="@color/white">
@@ -195,15 +195,15 @@
                     android:id="@+id/spinner"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
-                    android:layout_margin="5dp"
-                    android:layout_below="@+id/date_relative">
+                    android:layout_below="@+id/date_relative"
+                    android:layout_margin="5dp">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/input_spinner"
                         style="@style/SpinnerTextInputLayoutStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="CATEGORY"
+                        android:hint="@string/category"
                         android:textColorHint="@color/white"
                         app:startIconDrawable="@drawable/menu"
                         app:startIconTint="@color/white">
@@ -234,16 +234,16 @@
                 <RelativeLayout
                     android:id="@+id/description_relative"
                     android:layout_width="match_parent"
-                    android:layout_margin="5dp"
                     android:layout_height="70dp"
-                    android:layout_below="@id/spinner">
+                    android:layout_below="@id/spinner"
+                    android:layout_margin="5dp">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/passwordTxtInput2"
                         style="@style/LoginTextInputLayoutStyle"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="DESCRIPTION"
+                        android:hint="@string/description"
                         android:textColorHint="@color/white"
                         app:startIconDrawable="@drawable/receipt"
                         app:startIconTint="@color/white">
@@ -277,7 +277,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/description_relative"
                     android:layout_marginTop="30dp"
-                    android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
                     android:gravity="end"
                     android:orientation="horizontal">
 
@@ -288,7 +288,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/degraded_button"
                         android:onClick="@{()-> viewModelDialog.cancel()}"
-                        android:text="CANCEL"
+                        android:text="@string/cancel"
                         android:textColor="@color/blue" />
 
                     <Button
@@ -298,7 +298,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/degraded_button"
                         android:onClick="@{()-> viewModelDialog.accept()}"
-                        android:text="ACCEPT"
+                        android:text="@string/accept"
                         android:textColor="@color/blue" />
 
                 </LinearLayout>

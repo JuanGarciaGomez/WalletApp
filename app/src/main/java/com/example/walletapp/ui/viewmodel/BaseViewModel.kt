@@ -4,7 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.walletapp.data.network.FireBaseController
 
-//TODO fix plural to singular
+/**
+ * This open class is the base for all project because inside there are
+ * variables with live data*
+ */
 open class BaseViewModel : ViewModel() {
     val error : MutableLiveData<ERROR> = MutableLiveData(null)
     val success : MutableLiveData<SUCCESS> = MutableLiveData(null)

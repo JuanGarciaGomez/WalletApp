@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="WalletApp"
+                android:text="@string/walletapp"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="italic|bold" />
@@ -50,7 +50,7 @@
                     style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Mail"
+                    android:hint="@string/mail"
                     android:textColorHint="@color/white"
                     app:startIconDrawable="@drawable/ic_mail"
                     app:startIconTint="@color/white">
@@ -87,7 +87,7 @@
                     style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
+                    android:hint="@string/password"
                     android:textColorHint="@color/white"
                     app:startIconDrawable="@drawable/ic_lock"
                     app:startIconTint="@color/white">
@@ -125,7 +125,7 @@
                     style="@style/LoginTextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Confirm Password"
+                    android:hint="@string/confirm_password"
                     android:textColorHint="@color/white"
                     app:startIconDrawable="@drawable/ic_lock"
                     app:startIconTint="@color/white">

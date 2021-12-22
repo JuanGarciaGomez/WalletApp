@@ -52,6 +52,9 @@ class Utils {
         }
 
         fun decryptUser(user: String?, key: String): String {
+            if (user.isNullOrEmpty()) {
+                return ""
+            }
             val secretKeySpec = generateKey(key)
             val cipher = Cipher.getInstance(encryptionStandard)
             cipher.init(Cipher.DECRYPT_MODE, secretKeySpec)
@@ -78,7 +81,7 @@ class Utils {
 
         private fun generateKey(password: String): SecretKeySpec {
             val sha = MessageDigest.getInstance(hashFunction)
-            var key: ByteArray? = password.toByteArray(charset(charset))
+            var key: ByteArray = password.toByteArray(charset(charset))
             key = sha.digest(key)
             return SecretKeySpec(key, encryptionStandard)
         }

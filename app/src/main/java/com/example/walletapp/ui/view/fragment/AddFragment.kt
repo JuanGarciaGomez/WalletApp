@@ -1,4 +1,4 @@
-package com.example.walletapp.ui.fragment
+package com.example.walletapp.ui.view.fragment
 
 import android.app.Dialog
 import android.os.Bundle
@@ -25,6 +25,10 @@ import com.example.walletapp.utils.Utils.Companion.onBack
 import com.google.android.material.datepicker.MaterialDatePicker
 
 class AddFragment : DialogFragment() {
+
+    /**
+     * This fragment is responsible about show the form of add expenses
+     */
 
     private lateinit var dialogViewModel: AddViewModel
 
@@ -89,6 +93,10 @@ class AddFragment : DialogFragment() {
 
     }
 
+    /**
+     * Options about category, you need the layout to implements this
+     *  list_item.xml
+     */
     private fun categoryPicker() {
         val items = listOf("Health", "Liqueur", "Gym", "Restaurant", "Shopping", "Market")
         val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
@@ -96,6 +104,9 @@ class AddFragment : DialogFragment() {
 
     }
 
+    /**
+     * Is a dataPicker from materialDesign2
+     */
     private fun materialDatePicker() {
 
         val datePickerMaterial =

@@ -16,6 +16,10 @@ class Prefs(context: Context) {
     private val SHARED_KEY = "key"
     private val storage = appContext.getSharedPreferences(SHARED_NAME, 0);
 
+    /**
+     * PermisosHuella dactilar
+     * fingerMode = 1 Concedido, 2 Denegado, 0 Desactivado
+     */
     fun saveFingerLogin(fingerMode: Int) {
         storage.edit().putInt(SHARED_FINGER_MODE, fingerMode).apply()
     }
@@ -23,7 +27,9 @@ class Prefs(context: Context) {
     fun getFingerLogin(): Int {
         return storage.getInt(SHARED_FINGER_MODE, 0)
     }
-
+    /**
+     * Save user and password with cryptMode
+     */
     fun saveCredentialsLogin(user: String, key: String) {
         storage.edit().putString(SHARED_USER, encryptUser(user, userKey)).apply()
         storage.edit().putString(SHARED_KEY, encryptPass(key, passKey)).apply()
@@ -38,6 +44,9 @@ class Prefs(context: Context) {
         return storage.getString(SHARED_KEY, "")
     }
 
+    /**
+     * Clear SharePreferences
+     */
     fun wipe() {
         storage.edit().clear().apply()
     }

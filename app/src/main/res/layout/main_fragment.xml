@@ -35,6 +35,14 @@
             app:strokeColor="@color/blue"
             app:strokeWidth="2dp">
 
+            <ImageView
+                android:id="@+id/image_empty"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                app:srcCompat="@drawable/power" />
+
             <com.google.android.material.progressindicator.CircularProgressIndicator
                 android:id="@+id/progress_circular"
                 android:layout_width="wrap_content"

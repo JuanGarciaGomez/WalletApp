@@ -2,6 +2,7 @@ package com.example.walletapp.ui.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
@@ -19,15 +20,13 @@ import com.google.android.material.tabs.TabLayout
 
 class MainView : AppCompatActivity() {
 
+    /**
+     * This class is responsible for show four modalities
+     * and apply filter according to the modality also
+     * question about fingerLogin
+     */
+
     private lateinit var binding: ActivityMainBinding
-
-    /*  private val fileResult = 1
-      private val dataBase = Firebase.database
-      private val myRef = dataBase.getReference("user")*/
-
-    // 1 Permiso concedido
-    // 2 Permiso denegado
-    // 0 Desactivado
 
     private val mainViewModel: MainViewModel by viewModels()
 
@@ -63,15 +62,18 @@ class MainView : AppCompatActivity() {
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
-
+                Log.e("onTabUnselected", tab.toString())
+// no se debe utilizar
             }
 
             override fun onTabReselected(tab: TabLayout.Tab) {
-
+                Log.e("onTabReselected", tab.toString())
+//no se debe utilizar
             }
         })
 
-        binding.pagerContainer.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.pagerContainer.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 binding.tabLayout.selectTab(binding.tabLayout.getTabAt(position))
             }
@@ -97,17 +99,17 @@ class MainView : AppCompatActivity() {
         }
     }
 
-    private fun questionFingerPrint(){
+    private fun questionFingerPrint() {
         MaterialAlertDialogBuilder(context).setTitle("Fingerprint")
             .setMessage("¿Activate fingerprint login?")
             .setNegativeButton("NO") { dialog, which ->
                 // Respond to negative button press
-              toast("Permission denied, maybe next time")
+                toast("Permission denied, maybe next time")
                 prefs.saveFingerLogin(2)
             }
             .setPositiveButton("YES") { dialog, which ->
                 prefs.saveFingerLogin(1)
-               toast("Permission granted")
+                toast("Permission granted")
             }
             .show()
     }
