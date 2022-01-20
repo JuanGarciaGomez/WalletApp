@@ -1,8 +1,10 @@
 package com.example.walletapp.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.example.walletapp.data.model.ExpensesModel
+import com.example.walletapp.data.model.AddMovesModel
 import com.example.walletapp.utils.Utils.Companion.dataUItoDB
+import com.example.walletapp.utils.Utils.Companion.move
+import com.example.walletapp.utils.Utils.Companion.onBack
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -37,17 +39,19 @@ class AddViewModel : BaseViewModel() {
                 error.value = ERROR.EMPTY_FIELDS
             else {
                 val expenses =
-                    ExpensesModel(
+                    AddMovesModel(
                         Firebase.auth.currentUser?.email.toString(),
                         nameAdd,
                         descriptionAdd,
                         amountAdd.toDouble(),
                         dataUItoDB(dateAdd),
-                        category
+                        category,
+                        move
                     )
                 expenses.addExpenses({
                     navigation.value = NAVIGATION.GO_MAIN_VIEW
                     success.value = SUCCESS.ADD_SUCCESS
+                    onBack = 0
                 }, {
                     error.value = ERROR.ERROR_ADD_EXPENSES
                 })

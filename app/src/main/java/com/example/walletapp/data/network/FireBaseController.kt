@@ -1,7 +1,12 @@
 package com.example.walletapp.data.network
 
-import com.example.walletapp.data.model.Expenses
-import com.example.walletapp.data.model.ExpensesModel
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
+import com.example.walletapp.data.model.AddMoves
+import com.example.walletapp.data.model.AddMovesModel
 import com.example.walletapp.data.model.LoginModel
 import com.example.walletapp.data.model.RegisterModel
 import com.google.firebase.auth.FirebaseAuth
@@ -16,7 +21,7 @@ class FireBaseController {
     private var instance = FirebaseAuth.getInstance()
 
     private val db = Firebase.firestore
-    private val collection = db.collection("expenses")
+    private val collection = db.collection("addMoves")
 
 
     fun auth(model: LoginModel, success: () -> Unit, error: (String) -> Unit) {
@@ -54,19 +59,20 @@ class FireBaseController {
     }
 
     /**
-     * add expenses in fireStore
+     * add moves in fireStore
      */
-    fun addExpenses(expensesModel: ExpensesModel, success: () -> Unit, error: () -> Unit) {
+    fun addMoves(addMovesModel: AddMovesModel, success: () -> Unit, error: () -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
-            val expenses = Expenses(
-                mail = expensesModel.mail,
-                name = expensesModel.name,
-                description = expensesModel.description,
-                amount = expensesModel.amount,
-                date = expensesModel.date,
-                category = expensesModel.category
+            val moves = AddMoves(
+                mail = addMovesModel.mail,
+                name = addMovesModel.name,
+                description = addMovesModel.description,
+                amount = addMovesModel.amount,
+                date = addMovesModel.date,
+                category = addMovesModel.category,
+                move = addMovesModel.move,
             )
-            collection.add(expenses).addOnSuccessListener {
+            collection.add(moves).addOnSuccessListener {
                 success.invoke()
             }.addOnFailureListener { e ->
                 e.printStackTrace()

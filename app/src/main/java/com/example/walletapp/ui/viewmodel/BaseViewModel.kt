@@ -12,6 +12,7 @@ open class BaseViewModel : ViewModel() {
     val error : MutableLiveData<ERROR> = MutableLiveData(null)
     val success : MutableLiveData<SUCCESS> = MutableLiveData(null)
     val navigation : MutableLiveData<NAVIGATION> = MutableLiveData(null)
+    val update : MutableLiveData<UPDATE> = MutableLiveData(null)
     val firebaseController = FireBaseController()
 }
 
@@ -38,4 +39,8 @@ enum class NAVIGATION{
     GO_LOGIN_VIEW,
     GO_ADD_TAP_SUCCESS,
     GO_LOGOUT_VIEW
+}
+
+enum class UPDATE{
+   UPDATE_LIST
 }

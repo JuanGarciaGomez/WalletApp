@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
+import com.example.walletapp.R
 import com.example.walletapp.adapter.FragmentAdapter
 import com.example.walletapp.data.extension_functions.toast
 import com.example.walletapp.data.model.MainModel
@@ -81,6 +82,7 @@ class MainView : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        Log.e("onBack", onBack.toString())
         if (onBack == 1) {
             mainViewModel.navigation.value = NAVIGATION.GO_MAIN_VIEW
             onBack = 0
@@ -113,62 +115,5 @@ class MainView : AppCompatActivity() {
             }
             .show()
     }
-
-
-    /*   //Abrir camara
-       fun fileManager() {
-           val intent = Intent(Intent.ACTION_GET_CONTENT)
-           intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-           intent.type = ""
-           startActivityForResult(intent, fileResult)
-       }*/
-
-/*    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == fileResult) {
-            if (resultCode == RESULT_OK && data != null) {
-
-                val clipData = data.clipData
-
-                if (clipData != null) {
-
-                    for (i in 0 until clipData.itemCount) {
-                        val uri = clipData.getItemAt(i).uri
-                        uri?.let { fileUpload(it) }
-                    }
-
-                } else {
-                    val uri = data.data
-                    uri?.let { fileUpload(it) }
-
-                }
-            }
-
-        }
-    }*/
-
-/*    private fun fileUpload(it: Uri) {
-        val folder: StorageReference = FirebaseStorage.getInstance().reference.child("User")
-        val path = it.lastPathSegment.toString()
-        val fileName: StorageReference = folder.child(path.substring(path.lastIndexOf('/')))
-
-
-        fileName.putFile(it).addOnSuccessListener {
-            fileName.downloadUrl.addOnSuccessListener { uri ->
-                val hashMap = HashMap<String, String>()
-                hashMap["link"] = uri.toString()
-                myRef.child(myRef.push().key.toString()).setValue(hashMap)
-
-                Log.e(null, "SUCCESSFUL")
-
-            }
-
-        }.addOnFailureListener {
-            Log.e(null, "WRONG")
-        }
-
-    }*/
-
 }
 

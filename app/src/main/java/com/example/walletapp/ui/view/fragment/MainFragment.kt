@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.walletapp.R
 import com.example.walletapp.adapter.ExpensesAdapter
-import com.example.walletapp.data.model.Expenses
+import com.example.walletapp.data.model.AddMoves
 import com.example.walletapp.databinding.MainFragmentBinding
 import com.example.walletapp.ui.viewmodel.MainFragmentViewModel
 import com.example.walletapp.ui.viewmodel.NAVIGATION
@@ -36,8 +36,6 @@ class MainFragment : Fragment() {
      * This fragment is responsible about show  different recyclerView
      * according to the need
      */
-
-    private var i = 0
     private lateinit var mainFragmentViewModel: MainFragmentViewModel
     private lateinit var binding: MainFragmentBinding
 
@@ -73,7 +71,7 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         mainFragmentViewModel = ViewModelProvider(this)[MainFragmentViewModel::class.java]
         // TODO: Use the ViewModel
-        //setBarChartValues()
+        //binding.txtBalance.text = move
     }
 
     fun setBarChartValues() {
@@ -133,11 +131,11 @@ class MainFragment : Fragment() {
         val email = Firebase.auth.currentUser?.email
         var totalAmount = 0.0;
         CoroutineScope(Dispatchers.IO).launch {
-            db.collection("expenses")
+            db.collection("addMoves")
                 .whereEqualTo("mail", email)
                 .get()
                 .addOnSuccessListener { expensesDocuments ->
-                    val expenses = mutableListOf<Expenses>()
+                    val expenses = mutableListOf<AddMoves>()
 
                     for (expenseDocument in expensesDocuments) {
 
@@ -150,7 +148,7 @@ class MainFragment : Fragment() {
                         val date = Utils.dataDBtoUI(expenseDocument.data["date"].toString())
                         val category = expenseDocument.data["category"].toString()
                         val expense =
-                            Expenses(expenseDocument.id,
+                            AddMoves(expenseDocument.id,
                                 name,
                                 "",
                                 amount.toDouble(),
@@ -165,7 +163,7 @@ class MainFragment : Fragment() {
                         it.date
                     }
                     activity?.runOnUiThread {
-                        if (expenses.isEmpty())  binding.imageEmpty.visibility = View.VISIBLE
+                        if (expenses.isEmpty()) binding.imageEmpty.visibility = View.VISIBLE
                         val adapter = context?.let { ExpensesAdapter(it, expenses) }
 
                         binding.listaGastos.layoutManager = LinearLayoutManager(requireContext())

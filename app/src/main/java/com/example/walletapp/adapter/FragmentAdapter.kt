@@ -12,6 +12,8 @@ class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
 
     override fun createFragment(position: Int): Fragment {
 
+        val tab = selectCategory(position)
+
         return when (position) {
             0 -> {
                 newInstance()
@@ -36,5 +38,24 @@ class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
         return 4
     }
 
+    fun selectCategory(tab: Int): String {
+        return when (tab) {
+            0 -> {
+                "Expenses"
+            }
+            1 -> {
+                "Debts"
+            }
+            2 -> {
+                "Entry"
+            }
+            3 -> {
+                "Trade"
+            }
+            else -> {
+                "Expenses"
+            }
+        }
+    }
 
 }

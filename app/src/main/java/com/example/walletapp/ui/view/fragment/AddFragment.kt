@@ -58,11 +58,11 @@ class AddFragment : DialogFragment() {
         dialogViewModel.success.observe(context, {
             when (it) {
                 SUCCESS.CLOSE_SUCCESS -> {
-                    intentTo(MainView::class.java)
+                    requireActivity().supportFragmentManager.beginTransaction().remove(this).commit()
                     onBack = 0
                 }
                 SUCCESS.ADD_SUCCESS -> {
-                    toast("Expenses Add :)")
+                    toast("AddMoves Add :)")
                 }
                 SUCCESS.DATE_PICKER -> {
                     materialDatePicker()

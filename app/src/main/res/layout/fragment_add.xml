@@ -40,10 +40,10 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_add"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:checkable="true"
-            android:clickable="true"
+            android:clickable="false"
             android:focusable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,16 +53,6 @@
             app:strokeColor="@color/blue"
             app:strokeWidth="2dp">
 
-            <TextView
-                android:id="@+id/txt_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:text="Enter Expenses"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,10 +61,22 @@
                 android:gravity="center"
                 android:padding="3dp">
 
+                <TextView
+                    android:id="@+id/txt_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="Enter Expenses"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
                 <RelativeLayout
                     android:id="@+id/name_relative"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
+                    android:layout_below="@id/txt_amount"
                     android:layout_margin="5dp">
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -131,7 +133,8 @@
                             android:id="@+id/amount_add"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="numberDecimal"
+                            android:digits=".0123456789"
+                            android:inputType="number"
                             android:text="@={viewModelDialog.amount}" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -171,6 +174,7 @@
                             android:id="@+id/date_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:focusable="false"
                             android:inputType="datetime"
                             android:onClick="@{()-> viewModelDialog.datePicker()}"
                             android:text="@={viewModelDialog.date}" />
@@ -212,7 +216,7 @@
                             android:id="@+id/spinner_edit"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="datetime"
+                            android:inputType="textCapWords"
                             android:text="@={viewModelDialog.category}" />
                     </com.google.android.material.textfield.TextInputLayout>
 

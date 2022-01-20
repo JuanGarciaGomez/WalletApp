@@ -11,8 +11,8 @@
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3223684210526316" />
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/drawable/ic_lock.xml" value="0.3223684210526316" />
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/drawable/ic_mail.xml" value="0.3223684210526316" />
-        <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/activity_login.xml" value="0.41386554621848737" />
-        <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/activity_main.xml" value="0.4" />
+        <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/activity_login.xml" value="0.319910514541387" />
+        <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/activity_main.xml" value="0.2892223738062756" />
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/activity_main2.xml" value="0.3087719298245614" />
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/activity_register.xml" value="0.3087719298245614" />
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/activity_register_view.xml" value="0.3383838383838384" />
@@ -20,11 +20,13 @@
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/fragment1.xml" value="0.3087719298245614" />
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/fragment2.xml" value="0.3087719298245614" />
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/fragment_add.xml" value="0.3087719298245614" />
+        <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/fragment_blank.xml" value="0.3087719298245614" />
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/graphic_fragment.xml" value="0.3087719298245614" />
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/item_expenses.xml" value="0.4" />
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/list_item.xml" value="0.3087719298245614" />
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/main_fragment.xml" value="0.3087719298245614" />
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/layout/prueba.xml" value="0.3087719298245614" />
+        <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3087719298245614" />
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3223684210526316" />
         <entry key="..\:/Users/Wposs/AndroidStudioProjects/WalletApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3223684210526316" />
         <entry key="..\:/Users/Wposs/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/auto_complete_list.xml" value="0.3087719298245614" />

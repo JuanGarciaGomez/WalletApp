@@ -19,6 +19,7 @@ class Utils {
         const val passKey = "zG*qEtkgAIx!"
 
         var onBack = 0
+        var move = "EXES"
 
         @SuppressLint("SimpleDateFormat")
         var dfUI = SimpleDateFormat("d MMM yyyy")

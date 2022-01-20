@@ -21,9 +21,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_marginTop="60dp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="16dp">
 
@@ -55,16 +55,16 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/mail"
                     android:textColorHint="@color/white"
-                    app:startIconTint="@color/white"
-                    app:startIconDrawable="@drawable/ic_mail">
+                    app:startIconDrawable="@drawable/ic_mail"
+                    app:startIconTint="@color/white">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/correoEdt"
-                        android:textColor="@color/white"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
-                        android:text="@={viewModelLogin.email}" />
+                        android:text="@={viewModelLogin.email}"
+                        android:textColor="@color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <View
@@ -92,9 +92,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/password"
-                    app:startIconTint="@color/white"
                     android:textColorHint="@color/white"
-                    app:startIconDrawable="@drawable/ic_lock">
+                    app:startIconDrawable="@drawable/ic_lock"
+                    app:startIconTint="@color/white">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/passwordEdt"
@@ -136,15 +136,15 @@
                     android:onClick="@{()-> viewModelLogin.login()}"
                     android:text="login" />
 
-            <!--    <ImageView
-                    android:id="@+id/finger_image"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
-                    android:onClick="@{()-> viewModelLogin.fingerAuth()}"
-                    android:visibility="gone"
-                    app:srcCompat="@drawable/ic_fingerprint" />-->
+                <!--    <ImageView
+                        android:id="@+id/finger_image"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:onClick="@{()-> viewModelLogin.fingerAuth()}"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/ic_fingerprint" />-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -169,9 +169,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top"
-                        android:textColor="@color/blue"
                         android:onClick="@{()-> viewModelLogin.register()}"
                         android:text="Register"
+                        android:textColor="@color/blue"
                         android:textSize="10sp" />
 
                 </LinearLayout>
