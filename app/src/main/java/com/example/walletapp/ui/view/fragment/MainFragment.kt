@@ -19,6 +19,7 @@ import com.example.walletapp.databinding.MainFragmentBinding
 import com.example.walletapp.ui.viewmodel.MainFragmentViewModel
 import com.example.walletapp.ui.viewmodel.NAVIGATION
 import com.example.walletapp.utils.Utils
+import com.example.walletapp.utils.Utils.Companion.move
 import com.example.walletapp.utils.Utils.Companion.onBack
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
@@ -54,6 +55,9 @@ class MainFragment : Fragment() {
         binding.viewModelMainFragment = mainFragmentViewModel
         binding.lifecycleOwner = this
 
+        Log.e("onCreateView",move)
+        binding.txtBalance.text = move
+
         mainFragmentViewModel.navigation.observe(this, {
             when (it) {
                 NAVIGATION.GO_ADD_TAP_SUCCESS -> {
@@ -71,7 +75,6 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         mainFragmentViewModel = ViewModelProvider(this)[MainFragmentViewModel::class.java]
         // TODO: Use the ViewModel
-        //binding.txtBalance.text = move
     }
 
     fun setBarChartValues() {
@@ -127,12 +130,14 @@ class MainFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun initRecycler() {
+        Log.e("entro","Recycler")
         val db = Firebase.firestore
         val email = Firebase.auth.currentUser?.email
         var totalAmount = 0.0;
         CoroutineScope(Dispatchers.IO).launch {
             db.collection("addMoves")
                 .whereEqualTo("mail", email)
+                .whereEqualTo("move", move)
                 .get()
                 .addOnSuccessListener { expensesDocuments ->
                     val expenses = mutableListOf<AddMoves>()

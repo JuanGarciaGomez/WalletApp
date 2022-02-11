@@ -1,9 +1,9 @@
 package com.example.walletapp.ui.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import com.example.walletapp.data.extension_functions.intentTo
@@ -51,7 +51,13 @@ class LoginView : AppCompatActivity() {
                     toast("Login correcto")
                 }
                 SUCCESS.FINGER_ACCESS -> {
-                    fingerLogin()
+                    if (binding.correoEdt.equals(decryptUser(prefs.getUsersLogin(),
+                            userKey))
+                    ) fingerLogin()
+                    else {
+                        Log.e("WIPE", "ENTRO")
+                        prefs.wipe()
+                    }
                 }
             }
         })

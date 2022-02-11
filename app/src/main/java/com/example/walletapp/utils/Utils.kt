@@ -3,6 +3,7 @@ package com.example.walletapp.utils
 import android.annotation.SuppressLint
 import android.util.Base64
 import java.security.MessageDigest
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.crypto.Cipher
@@ -85,6 +86,18 @@ class Utils {
             var key: ByteArray = password.toByteArray(charset(charset))
             key = sha.digest(key)
             return SecretKeySpec(key, encryptionStandard)
+        }
+
+        //Format number
+        fun formatNumber(str: String): String {
+            if (str.trim { it <= ' ' }.isNotEmpty()) try {
+                val value = str.toDouble()
+                val formatter = DecimalFormat("#,###")
+                return formatter.format(value).replace(',', '.')
+            } catch (e: NumberFormatException) {
+                e.printStackTrace()
+            }
+            return str
         }
 
 

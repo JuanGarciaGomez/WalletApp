@@ -38,7 +38,7 @@ class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
         return 4
     }
 
-    fun selectCategory(tab: Int): String {
+    private fun selectCategory(tab: Int): String {
         return when (tab) {
             0 -> {
                 "Expenses"

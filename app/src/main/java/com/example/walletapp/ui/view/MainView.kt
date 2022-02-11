@@ -7,7 +7,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
-import com.example.walletapp.R
 import com.example.walletapp.adapter.FragmentAdapter
 import com.example.walletapp.data.extension_functions.toast
 import com.example.walletapp.data.model.MainModel
@@ -15,6 +14,7 @@ import com.example.walletapp.data.prefs.FingerLoginOption.Companion.prefs
 import com.example.walletapp.databinding.ActivityMainBinding
 import com.example.walletapp.ui.viewmodel.MainViewModel
 import com.example.walletapp.ui.viewmodel.NAVIGATION
+import com.example.walletapp.utils.Utils.Companion.move
 import com.example.walletapp.utils.Utils.Companion.onBack
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
@@ -60,29 +60,28 @@ class MainView : AppCompatActivity() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 binding.pagerContainer.currentItem = tab.position
+                move = tab.contentDescription as String
+                Log.e("onTabSelected", move)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
-                Log.e("onTabUnselected", tab.toString())
 // no se debe utilizar
             }
 
             override fun onTabReselected(tab: TabLayout.Tab) {
-                Log.e("onTabReselected", tab.toString())
 //no se debe utilizar
             }
         })
 
-        binding.pagerContainer.registerOnPageChangeCallback(object :
-            ViewPager2.OnPageChangeCallback() {
+        binding.pagerContainer.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
+                Log.e("onPageSelected", position.toString())
                 binding.tabLayout.selectTab(binding.tabLayout.getTabAt(position))
             }
         })
     }
 
     override fun onBackPressed() {
-        Log.e("onBack", onBack.toString())
         if (onBack == 1) {
             mainViewModel.navigation.value = NAVIGATION.GO_MAIN_VIEW
             onBack = 0

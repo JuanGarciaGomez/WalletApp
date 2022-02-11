@@ -3,6 +3,7 @@ package com.example.walletapp.ui.viewmodel
 import androidx.lifecycle.MutableLiveData
 import com.example.walletapp.data.model.LoginModel
 import com.example.walletapp.data.prefs.FingerLoginOption.Companion.prefs
+import com.example.walletapp.utils.Utils
 import com.example.walletapp.utils.Utils.Companion.decryptUser
 import com.example.walletapp.utils.Utils.Companion.userKey
 
@@ -28,8 +29,8 @@ class LoginViewModel : BaseViewModel() {
 
             if (emailLogin.isNotEmpty() && passwordLogin.isEmpty()) success.value =
                 SUCCESS.FINGER_ACCESS
-            if (emailLogin.isEmpty()
-                || passwordLogin.isEmpty()
+            if ((emailLogin.isEmpty()
+                || passwordLogin.isEmpty()) && prefs.getUsersLogin().isBlank()
             ) error.value = ERROR.EMPTY_FIELDS
             else {
                 val model = LoginModel(emailLogin, passwordLogin)

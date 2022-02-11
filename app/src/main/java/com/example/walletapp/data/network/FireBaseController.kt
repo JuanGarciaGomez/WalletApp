@@ -1,10 +1,5 @@
 package com.example.walletapp.data.network
 
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.example.walletapp.data.model.AddMoves
 import com.example.walletapp.data.model.AddMovesModel
 import com.example.walletapp.data.model.LoginModel
