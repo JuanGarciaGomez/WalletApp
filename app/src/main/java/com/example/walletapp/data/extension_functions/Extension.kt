@@ -5,9 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.example.walletapp.data.prefs.FingerLoginOption
-import com.example.walletapp.utils.Utils.Companion.onBack
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 fun Activity.toast(text: String, length: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, text, length).show()
@@ -24,7 +21,7 @@ fun Context.intentTo(cls: Class<*>?) {
 fun DialogFragment.intentTo(cls: Class<*>?) {
     requireContext().startActivity(Intent(requireContext(), cls))
 }
-
+/*
 fun dialog(
     context: Context, toastPositive: String?,
     toastNegative: String?, title: String, message: String, activity: Activity,
@@ -45,5 +42,5 @@ fun dialog(
             } else onBack = 2
         }
         .show()
-}
+}*/
 

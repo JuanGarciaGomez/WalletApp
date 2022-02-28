@@ -63,8 +63,6 @@ class LoginView : AppCompatActivity() {
                         prefs.wipe()
                     }
                 }
-                else -> toast("Error login")
-
             }
         }
         loginViewModel.error.observe(this) {
@@ -75,7 +73,6 @@ class LoginView : AppCompatActivity() {
                 ERROR.WRONG_CREDENTIALS -> {
                     toast("Error de credenciales")
                 }
-                else -> toast("Error desconocido")
             }
         }
         loginViewModel.navigation.observe(this) {
@@ -87,7 +84,6 @@ class LoginView : AppCompatActivity() {
                     intentTo(MainView::class.java)
                     finish()
                 }
-                else -> toast("Error")
             }
         }
 

@@ -47,7 +47,7 @@ class MainView : AppCompatActivity() {
         fragmentAdapter = FragmentAdapter(fm, lifecycle)
         binding.pagerContainer.adapter = fragmentAdapter
 
-        mainViewModel.navigation.observe(this, {
+        mainViewModel.navigation.observe(this) {
             when (it) {
                 NAVIGATION.GO_LOGOUT_VIEW -> {
                     val intent = Intent(context, LoginView::class.java)
@@ -55,7 +55,7 @@ class MainView : AppCompatActivity() {
                     finish()
                 }
             }
-        })
+        }
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
