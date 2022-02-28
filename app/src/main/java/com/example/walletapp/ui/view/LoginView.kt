@@ -45,23 +45,29 @@ class LoginView : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModelLogin = loginViewModel
 
-        loginViewModel.success.observe(this, {
+        loginViewModel.success.observe(this) {
             when (it) {
                 SUCCESS.LOGIN_SUCCESS -> {
                     toast("Login correcto")
                 }
                 SUCCESS.FINGER_ACCESS -> {
-                    if (binding.correoEdt.equals(decryptUser(prefs.getUsersLogin(),
-                            userKey))
+                    if (binding.correoEdt.equals(
+                            decryptUser(
+                                prefs.getUsersLogin(),
+                                userKey
+                            )
+                        )
                     ) fingerLogin()
                     else {
                         Log.e("WIPE", "ENTRO")
                         prefs.wipe()
                     }
                 }
+                else -> toast("Error login")
+
             }
-        })
-        loginViewModel.error.observe(this, {
+        }
+        loginViewModel.error.observe(this) {
             when (it) {
                 ERROR.EMPTY_FIELDS -> {
                     toast("Campos vacios")
@@ -69,9 +75,10 @@ class LoginView : AppCompatActivity() {
                 ERROR.WRONG_CREDENTIALS -> {
                     toast("Error de credenciales")
                 }
+                else -> toast("Error desconocido")
             }
-        })
-        loginViewModel.navigation.observe(this, {
+        }
+        loginViewModel.navigation.observe(this) {
             when (it) {
                 NAVIGATION.GO_REGISTER_VIEW -> {
                     intentTo(RegisterView::class.java)
@@ -80,8 +87,9 @@ class LoginView : AppCompatActivity() {
                     intentTo(MainView::class.java)
                     finish()
                 }
+                else -> toast("Error")
             }
-        })
+        }
 
     }
 
@@ -103,9 +111,13 @@ class LoginView : AppCompatActivity() {
                     super.onAuthenticationSucceeded(result)
                     toast("Authentication suceeded!")
 
-                    val model = LoginModel(decryptUser(prefs.getUsersLogin(), userKey),
-                        decryptPass(prefs.getKeyLogin(),
-                            passKey))
+                    val model = LoginModel(
+                        decryptUser(prefs.getUsersLogin(), userKey),
+                        decryptPass(
+                            prefs.getKeyLogin(),
+                            passKey
+                        )
+                    )
                     model.auth({
                         loginViewModel.navigation.value = NAVIGATION.GO_MAIN_VIEW
                         loginViewModel.success.value = SUCCESS.LOGIN_SUCCESS

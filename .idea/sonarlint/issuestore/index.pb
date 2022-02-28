@@ -3,10 +3,6 @@ k
 ;app/src/main/java/com/example/walletapp/data/prefs/Prefs.kt,d\6\d627da94c18f7fcd3efe4d7ded69fc962a48188b
 }
 Mapp/src/main/java/com/example/walletapp/data/extension_functions/Extension.kt,8\a\8a11ba81dbb6d99f1d43b3f132ec38aef12874c2
-l
-<app/src/main/java/com/example/walletapp/ui/view/LoginView.kt,c\0\c0167e483b993c4c76c74ef7746d4db87a958f8d
-u
-Eapp/src/main/java/com/example/walletapp/ui/viewmodel/BaseViewModel.kt,7\0\70228527de3ad33b3448ef437fd1eee344a58cc9
 w
 Gapp/src/main/java/com/example/walletapp/data/prefs/FingerLoginOption.kt,9\9\999081bdf98855b52b049f09da05ea8d4d29275c
 u
